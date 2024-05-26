@@ -150,13 +150,6 @@ const LoginForm = () => {
             Sign in with Google
             </button>
 
-            {/* Linkedin */}
-            <button
-                className="flex w-full items-center justify-center gap-3.5 rounded-lg border border-stroke bg-gray p-4 hover:bg-opacity-50 dark:border-strokedark dark:bg-meta-4 dark:hover:bg-opacity-50"
-                onClick={() => signIn('linkedin', { callbackUrl: process.env.NEXT_PUBLIC_LINKEDIN_CALLBACK_URL })}
-            >Linkedin</button>
-
-
             <div className="mt-6 text-center">
             <p>
                 Don’t have any account?{" "}
