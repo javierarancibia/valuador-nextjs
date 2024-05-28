@@ -3,7 +3,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { signOut, useSession } from "next-auth/react";
 
-
 const DropdownUser = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [ userImage, setUserImage ] = useState('/images/user/user-01.png')
