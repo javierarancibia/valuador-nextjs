@@ -4,7 +4,6 @@ import AppUser from "../../../../models/appUser"
 import { NextRequest, NextResponse } from "next/server"
 import { getToken } from 'next-auth/jwt';
 
-
 export async function GET(req: NextRequest) {
     try {
         await connectMongoDB()
@@ -27,7 +26,8 @@ export async function GET(req: NextRequest) {
         return NextResponse.json(reports)
 
     } catch (error) {
-        
+        console.log(error);
+        return NextResponse.json({ error: 'Failed to get reports' }, { status: 500 });
     }
 }
 
