@@ -1,7 +1,25 @@
+'use client'
+
+import React, { useState, useEffect } from 'react'
 import Link from 'next/link';
-import React from 'react'
+import ReportsTable from '../Tables/ReportsTable';
 
 const ReportsDashboard = () => {
+  const [reports, setReports ] = useState([])
+  
+  const getData = async () => {
+    const response = await fetch('/api/reports')
+    const res = await response.json()
+    return setReports(res.reports);
+  } 
+
+  useEffect(() => {
+    try {
+      getData()
+    } catch (error) {
+      console.log(error)    
+    }
+  }, [])
 
   return (
     <div>
@@ -34,6 +52,9 @@ const ReportsDashboard = () => {
         </span>
         Crear Informe
       </Link>
+      {
+        reports.length > 0 ? <ReportsTable reports={reports} /> : <h1>None</h1>
+      }
     </div>
   )
 }

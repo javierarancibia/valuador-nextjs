@@ -22,7 +22,6 @@ export async function GET(req: NextRequest) {
         }
         // Find the MongoDB user email to get all reports   
         const reports = await AppUser.findOne({ email }).populate('reports');
-        console.log(reports)
         return NextResponse.json(reports)
 
     } catch (error) {

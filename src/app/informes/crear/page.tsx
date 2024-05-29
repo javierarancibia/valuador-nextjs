@@ -23,7 +23,7 @@ const ReportFormModal = () => {
             return;
         }
     
-        const response = await fetch('/api/report', {
+        const response = await fetch('/api/reports', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data),
@@ -60,7 +60,6 @@ const ReportFormModal = () => {
                                 {...methods.register("reference")}
                             />
                         </div>
-
                         <button className="flex w-full justify-center rounded bg-primary p-3 font-medium text-gray hover:bg-opacity-90">
                             Crear Informe
                         </button>
