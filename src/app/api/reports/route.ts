@@ -5,6 +5,9 @@ import { NextRequest, NextResponse } from "next/server"
 import { getToken } from 'next-auth/jwt';
 
 export async function GET(req: NextRequest) {
+    const {searchParams} = new URL(req.url);
+    const informeIdParam = searchParams.get("informeId");
+
     try {
         await connectMongoDB()
         // Extract the token from the request
@@ -20,6 +23,13 @@ export async function GET(req: NextRequest) {
         if (!email) {
             return NextResponse.json({ error: 'Email is required' }, { status: 400 });
         }
+
+        // If report id comes in params, find Report in DB and return it
+        if (informeIdParam) {
+            const report = await Report.findById(informeIdParam)
+            return NextResponse.json({ message: 'Report found', report }, { status: 500 });
+        }
+
         // Find the MongoDB user email to get all reports   
         const reports = await AppUser.findOne({ email }).populate('reports');
         return NextResponse.json(reports)
@@ -60,9 +70,13 @@ export async function POST(req: NextRequest) {
         user.reports.push(report._id);
         await user.save();
 
-        return NextResponse.json({ message: 'Report created successfully', reportId: report._id }, { status: 201 });
+        return NextResponse.json({ message: 'Report created successfully', property, reportId: report._id }, { status: 201 });
     } catch (error) {
         console.log(error);
         return NextResponse.json({ error: 'Failed to create report' }, { status: 500 });
     }
 }
+
+// export async function DELETE(req: NextRequest) {
+    
+// }

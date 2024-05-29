@@ -33,7 +33,7 @@ const ReportFormModal = () => {
     
         const res = await response.json();
         if (response.ok) {
-            router.push(`/informes/${res.reportId}`)
+            router.push(`/informes/${res.property}/${res.reportId}`)
         } else {
             alert(`Error: ${res.error}`);
         }
