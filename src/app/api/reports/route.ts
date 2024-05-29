@@ -60,7 +60,7 @@ export async function POST(req: NextRequest) {
         user.reports.push(report._id);
         await user.save();
 
-        return NextResponse.json({ message: 'Report created successfully' }, { status: 201 });
+        return NextResponse.json({ message: 'Report created successfully', reportId: report._id }, { status: 201 });
     } catch (error) {
         console.log(error);
         return NextResponse.json({ error: 'Failed to create report' }, { status: 500 });

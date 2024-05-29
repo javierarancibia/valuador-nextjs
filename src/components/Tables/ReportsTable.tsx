@@ -12,10 +12,7 @@ interface Props {
     reports: Report[]
 }
 
-
 const ReportsTable: React.FC<Props> = ({ reports }) => {
-
-
     return (
         <div className="rounded-sm border border-stroke mt-10 bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
         <div className="px-4 py-6 md:px-6 xl:px-7.5">
