@@ -1,21 +1,14 @@
-'use client' 
-
-import React, { useState } from 'react'
-import ReportFormModal from './ReportFormModal'
+import Link from 'next/link';
+import React from 'react'
 
 const ReportsDashboard = () => {
-  const [ displayFormModal, setDisplayFormModal ] = useState<boolean>(false)
-
-  if (displayFormModal) {
-    return <ReportFormModal />
-  }
 
   return (
     <div>
-        <button
+        <Link
           className="inline-flex items-center justify-center gap-2.5 rounded-md bg-primary px-10 py-4 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10"
-          onClick={() => setDisplayFormModal(true)}
-      >
+          href="/informes/crear"
+        >
         <span>
           <svg
             className="fill-current"
@@ -40,7 +33,7 @@ const ReportsDashboard = () => {
           </svg>
         </span>
         Crear Informe
-      </button>
+      </Link>
     </div>
   )
 }

@@ -1,10 +1,11 @@
 "use client";
 import React, { useState } from "react";
+import { useFormContext } from "react-hook-form"
 
 const SelectGroupTwo: React.FC = () => {
   const [selectedOption, setSelectedOption] = useState<string>("");
   const [isOptionSelected, setIsOptionSelected] = useState<boolean>(false);
-
+  const { register } = useFormContext()
   const changeTextColor = () => {
     setIsOptionSelected(true);
   };
@@ -49,6 +50,7 @@ const SelectGroupTwo: React.FC = () => {
 
         <select
           value={selectedOption}
+          {...register("property")}
           onChange={(e) => {
             setSelectedOption(e.target.value);
             changeTextColor();
