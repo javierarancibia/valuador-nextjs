@@ -1,6 +1,8 @@
 'use client'
 
+import Breadcrumb from '@/components/Breadcrumbs/Breadcrumb'
 import DefaultLayout from '@/components/Layouts/DefaultLayout'
+import Header from '@/components/ReportForm/Header'
 import React, { useEffect } from 'react'
 
 interface ArgumentType {
@@ -8,11 +10,10 @@ interface ArgumentType {
 }
 
 const Informe = ({ params }: { params: { informeId: string } }) => {
-    
     const getReport = async (params: ArgumentType) => {
         const response = await fetch(`/api/reports?informeId=${params.informeId}`)
         const res = await response.json()
-        console.log(res);
+        console.log("ressss", res);
         return res
     }
 
@@ -22,7 +23,9 @@ const Informe = ({ params }: { params: { informeId: string } }) => {
 
     return (
         <DefaultLayout>
-            <div>Informe: { params.informeId }</div>
+            {/* <div>Informe: { params.informeId }</div> */}
+            <Header />
+            {/* <Breadcrumb /> */}
         </DefaultLayout>
     )
 }
