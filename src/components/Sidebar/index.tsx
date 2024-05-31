@@ -163,7 +163,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                       fill=""
                     />
                   </svg>
-                  Perfil
+                  Mi Perfil
                 </Link>
               </li>
               {/* /forms/form-elements

@@ -14,7 +14,7 @@ const ReportsDashboard = () => {
   } 
   
   const { data } = useQuery({ queryKey: ['reports'], queryFn: getData })
-
+                        
   return (
     <div>
         <Link

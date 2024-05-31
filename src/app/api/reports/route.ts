@@ -65,8 +65,7 @@ export async function POST(req: NextRequest) {
         if (!user) {
             return NextResponse.json({ error: 'User not found' }, { status: 404 });
         }
-        
-        const report = await Report.create({ property, reference, appUser: user._id });
+        const report = await Report.create({ date: new Date(), property, reference, appUser: user._id });
         user.reports.push(report._id);
         await user.save();
 

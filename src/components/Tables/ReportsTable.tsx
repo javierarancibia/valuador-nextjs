@@ -86,7 +86,7 @@ const ReportsTable: React.FC<Props> = ({ reports }) => {
                 <div className="col-span-2 flex items-center">
                     <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
                         <p className="text-sm text-black dark:text-white">
-                            {report.date}
+                            {report.date?.slice(0, 10)}
                         </p>
                     </div>
                 </div>
