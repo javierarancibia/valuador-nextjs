@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.40.0",
     "apexcharts": "^3.45.2",
     "flatpickr": "^4.6.13",
     "jsonwebtoken": "^9.0.2",

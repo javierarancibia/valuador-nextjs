@@ -6,6 +6,7 @@ import React from "react";
 import { getServerSession } from "next-auth";
 import SessionProvider from "../components/SessionProvider";
 import type { Metadata } from 'next'
+import { QueryProvider } from "../../lib/QueryProvider";
 
 export const metadata: Metadata = {
   title: '...',
@@ -19,9 +20,11 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
     <html lang="en">
       <body suppressHydrationWarning={true}>
         <SessionProvider session={session}>
-          <div className="dark:bg-boxdark-2 dark:text-bodydark">
-             { children }
-          </div>
+          <QueryProvider>
+            <div className="dark:bg-boxdark-2 dark:text-bodydark">
+              { children }
+            </div>
+          </QueryProvider>
         </SessionProvider>
       </body>
     </html>

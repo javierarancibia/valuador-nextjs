@@ -77,6 +77,12 @@ export async function POST(req: NextRequest) {
     }
 }
 
-// export async function DELETE(req: NextRequest) {
-    
-// }
+export async function DELETE(req: NextRequest) {
+    try {
+        const request = await req.json()
+        const mongoResponse = await Report.findByIdAndDelete(request.reportId)
+        return NextResponse.json({ message: "Report Removed", dbResponse: mongoResponse }, { status: 200 })
+    } catch (error) {
+        return NextResponse.json({ message: "Failed to remove report" }, { status: 500 })
+    }
+}

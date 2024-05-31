@@ -1,25 +1,19 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import Link from 'next/link';
 import ReportsTable from '../Tables/ReportsTable';
+import { useQuery } from '@tanstack/react-query';
 
 const ReportsDashboard = () => {
-  const [reports, setReports ] = useState([])
   
   const getData = async () => {
     const response = await fetch('/api/reports')
     const res = await response.json()
-    return setReports(res.reports);
+    return res;
   } 
-
-  useEffect(() => {
-    try {
-      getData()
-    } catch (error) {
-      console.log(error)    
-    }
-  }, [])
+  
+  const { data } = useQuery({ queryKey: ['reports'], queryFn: getData })
 
   return (
     <div>
@@ -52,9 +46,7 @@ const ReportsDashboard = () => {
         </span>
         Crear Informe
       </Link>
-      {
-        reports.length > 0 ? <ReportsTable reports={reports} /> : <h1>None</h1>
-      }
+      { data ? <ReportsTable reports={data.reports} /> : <h1>None</h1>  }
     </div>
   )
 }
