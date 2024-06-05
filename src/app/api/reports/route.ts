@@ -27,7 +27,7 @@ export async function GET(req: NextRequest) {
         // If report id comes in params, find Report in DB and return it
         if (informeIdParam) {
             const report = await Report.findById(informeIdParam)
-            return NextResponse.json({ message: 'Report found', report }, { status: 500 });
+            return NextResponse.json({ message: 'Report found', report }, { status: 200 });
         }
 
         // Find the MongoDB user email to get all reports   

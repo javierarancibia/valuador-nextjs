@@ -1,9 +1,9 @@
 'use client'
 
-import Breadcrumb from '@/components/Breadcrumbs/Breadcrumb'
+import React, { useEffect } from 'react'
 import DefaultLayout from '@/components/Layouts/DefaultLayout'
 import Header from '@/components/ReportForm/Header'
-import React, { useEffect } from 'react'
+import { useQuery } from '@tanstack/react-query'
 
 interface ArgumentType {
     informeId: string
@@ -13,20 +13,24 @@ const Informe = ({ params }: { params: { informeId: string } }) => {
     const getReport = async (params: ArgumentType) => {
         const response = await fetch(`/api/reports?informeId=${params.informeId}`)
         const res = await response.json()
-        console.log("ressss", res);
         return res
     }
+    const { data } = useQuery({ queryKey: ['report', params], queryFn: () => getReport(params) })
+    data && console.log(data)
 
     useEffect(() => {
-        params && getReport(params)
-    },[ params ])
 
-    return (
-        <DefaultLayout>
-            {/* <div>Informe: { params.informeId }</div> */}
-            <Header />
-            {/* <Breadcrumb /> */}
-        </DefaultLayout>
-    )
+        return () => {
+            console.log("unmounting");
+        };
+    }, []);
+
+    if (data) {
+        return (
+            <DefaultLayout>
+                <Header />
+            </DefaultLayout>
+        )
+    }
 }
 export default Informe;
